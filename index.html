@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Reader - Pindai Kode QR Online</title>
-    <meta name="description" content="Pindai dan baca kode QR secara online dengan mudah dan cepat menggunakan QR Code Reader kami. Cukup unggah gambar QR atau gunakan kamera Anda.">
-    <meta name="keywords" content="qr code reader, pemindai qr, baca qr code, qr code online, qr scanner">
+    <title>QR Code Reader - Scan QR Codes Online</title>
+    <meta name="description" content="Scan and read QR codes online easily and fast with our QR Code Reader. Just upload a QR image or use your camera.">
+    <meta name="keywords" content="qr code reader, qr scanner, read qr code, qr code online, scan qr">
     <meta name="author" content="VIN NESIA">
     <link rel="canonical" href="https://qrdecode.vinnesia.my.id">
 
@@ -15,16 +15,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://qrdecode.vinnesia.my.id">
-    <meta property="og:title" content="QR Code Reader - Pindai Kode QR Cepat & Mudah">
-    <meta property="og:description" content="Alat pemindai kode QR online gratis. Unggah gambar atau gunakan kamera untuk membaca konten QR secara instan.">
-    <meta property="og:image" content="https://qrdecode.vinnesia.my.id/social-preview.png"> <!-- Ganti dengan URL gambar preview Anda -->
+    <meta property="og:title" content="QR Code Reader - Scan QR Codes Fast & Easy">
+    <meta property="og:description" content="A free online QR code scanner tool. Upload an image or use your camera to instantly read QR content.">
+    <meta property="og:image" content="https://qrdecode.vinnesia.my.id/social-preview.png"> <!-- Replace with your preview image URL -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://qrdecode.vinnesia.my.id">
-    <meta property="twitter:title" content="QR Code Reader - Pindai Kode QR Cepat & Mudah">
-    <meta property="twitter:description" content="Alat pemindai kode QR online gratis. Unggah gambar atau gunakan kamera untuk membaca konten QR secara instan.">
-    <meta property="twitter:image" content="https://qrdecode.vinnesia.my.id/social-preview.png"> <!-- Ganti dengan URL gambar preview Anda -->
+    <meta property="twitter:title" content="QR Code Reader - Scan QR Codes Fast & Easy">
+    <meta property="twitter:description" content="A free online QR code scanner tool. Upload an image or use your camera to instantly read QR content.">
+    <meta property="twitter:image" content="https://qrdecode.vinnesia.my.id/social-preview.png"> <!-- Replace with your preview image URL -->
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
@@ -41,11 +41,11 @@
     <style>
         /* CSS RESET AND BASIC STYLING */
         :root {
-            --primary-bg: #1a1a2e; /* Ungu kehitaman */
+            --primary-bg: #1a1a2e; /* Dark Purple */
             --secondary-bg: #16213e;
-            --accent-purple: #9b59b6; /* Ungu */
-            --accent-green: #2ecc71;  /* Hijau */
-            --accent-yellow: #f1c40f; /* Kuning */
+            --accent-purple: #9b59b6; /* Purple */
+            --accent-green: #2ecc71;  /* Green */
+            --accent-yellow: #f1c40f; /* Yellow */
             --text-color: #e0e0e0;
             --text-muted: #a0a0a0;
             --border-color: #4a4a6a;
@@ -106,16 +106,16 @@
 
         /* HERO SECTION & QR READER */
         .hero-section {
-            padding: 4rem 0;
+            padding: 3rem 0;
             text-align: center;
         }
 
         .qr-reader-wrapper {
             background-color: var(--secondary-bg);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            max-width: 600px;
+            max-width: 600px; /* Default max-width for mobile */
             margin: 0 auto;
         }
 
@@ -125,14 +125,28 @@
             color: #fff;
         }
 
-        .qr-reader-wrapper p {
+        .qr-reader-wrapper > p {
             color: var(--text-muted);
             margin-bottom: 2rem;
+        }
+        
+        /* Layout for scanner and result */
+        .scanner-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .scanner-ui {
+            flex: 1;
+        }
+
+        .result-ui {
+            flex: 1;
         }
 
         .qr-reader-box {
             width: 100%;
-            max-width: 400px;
             margin: 0 auto 1.5rem auto;
             background-color: #000;
             border: 3px dashed var(--border-color);
@@ -158,6 +172,10 @@
 
         #upload-prompt {
             color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         #upload-prompt .fa-qrcode {
@@ -198,7 +216,6 @@
         }
 
         .result-container {
-            margin-top: 2rem;
             text-align: left;
         }
 
@@ -217,7 +234,7 @@
             font-family: 'Courier New', Courier, monospace;
             white-space: pre-wrap;
             word-wrap: break-word;
-            min-height: 50px;
+            min-height: 150px;
         }
 
         /* FOOTER */
@@ -226,6 +243,7 @@
             color: var(--text-muted);
             padding: 3rem 0 1.5rem 0;
             border-top: 2px solid var(--border-color);
+            margin-top: 3rem;
         }
 
         .footer-grid {
@@ -286,7 +304,13 @@
             font-size: 0.9rem;
         }
 
-        /* RESPONSIVE DESIGN */
+        /* RESPONSIVE DESIGN & DESKTOP OPTIMIZATION */
+        @media (max-width: 991px) {
+             .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .site-title {
                 font-size: 1.5rem;
@@ -303,6 +327,25 @@
             }
             .social-icons {
                 justify-content: center;
+            }
+        }
+        
+        /* Desktop layout optimization */
+        @media (min-width: 992px) {
+            .qr-reader-wrapper {
+                max-width: 1000px; /* Wider container on desktop */
+                padding: 2.5rem;
+            }
+            .scanner-layout {
+                flex-direction: row; /* Side-by-side layout */
+                align-items: flex-start;
+                gap: 2.5rem;
+            }
+            .result-container {
+                margin-top: 0;
+            }
+            #scan-result {
+                min-height: 300px; /* Taller result box on desktop */
             }
         }
     </style>
@@ -322,28 +365,36 @@
         <section class="hero-section">
             <div class="container">
                 <div class="qr-reader-wrapper">
-                    <h2>Pindai Kode QR dari Gambar atau Kamera</h2>
-                    <p>Unggah file gambar kode QR atau gunakan kamera perangkat Anda untuk memindai secara langsung.</p>
-                    <div class="qr-reader-box">
-                        <div id="video-container" style="display: none;">
-                            <video id="qr-video" playsinline></video>
+                    <h2>Scan a QR Code from an Image or Camera</h2>
+                    <p>Upload a QR code image or use your device's camera to scan directly.</p>
+                    
+                    <div class="scanner-layout">
+                        <div class="scanner-ui">
+                            <div class="qr-reader-box">
+                                <div id="video-container" style="display: none;">
+                                    <video id="qr-video" playsinline></video>
+                                </div>
+                                <div id="upload-prompt">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>Point camera at QR code or</p>
+                                    <label for="file-input" class="upload-button">
+                                        <i class="fas fa-upload"></i> Choose Image File
+                                    </label>
+                                    <input type="file" id="file-input" accept="image/*" hidden>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button id="start-scan-btn"><i class="fas fa-camera"></i> Start Camera</button>
+                                <button id="stop-scan-btn" style="display: none;"><i class="fas fa-stop-circle"></i> Stop Camera</button>
+                            </div>
                         </div>
-                        <div id="upload-prompt">
-                            <i class="fas fa-qrcode"></i>
-                            <p>Arahkan kamera ke kode QR atau</p>
-                            <label for="file-input" class="upload-button">
-                                <i class="fas fa-upload"></i> Pilih File Gambar
-                            </label>
-                            <input type="file" id="file-input" accept="image/*" hidden>
+
+                        <div class="result-ui">
+                            <div class="result-container">
+                                <h3>Scan Result:</h3>
+                                <pre id="scan-result">The result will appear here...</pre>
+                            </div>
                         </div>
-                    </div>
-                    <div class="controls">
-                        <button id="start-scan-btn"><i class="fas fa-camera"></i> Mulai Kamera</button>
-                        <button id="stop-scan-btn" style="display: none;"><i class="fas fa-stop-circle"></i> Hentikan Kamera</button>
-                    </div>
-                    <div class="result-container">
-                        <h3>Hasil Pindai:</h3>
-                        <pre id="scan-result">Hasil akan ditampilkan di sini...</pre>
                     </div>
                 </div>
             </div>
@@ -353,18 +404,18 @@
     <footer class="site-footer-main">
         <div class="container">
             <div class="footer-grid">
-                <!-- Navigasi -->
+                <!-- Navigation -->
                 <div class="footer-section">
-                    <h4><i class="fas fa-compass"></i> Navigasi</h4>
+                    <h4><i class="fas fa-compass"></i> Navigation</h4>
                     <ul>
                         <li><a href="https://www.vinnesia.my.id" class="link-purple">Homepage</a></li>
                     </ul>
                 </div>
-                <!-- Bantuan -->
+                <!-- Help -->
                 <div class="footer-section">
-                    <h4><i class="fas fa-book"></i> Bantuan</h4>
+                    <h4><i class="fas fa-book"></i> Help</h4>
                     <ul>
-                        <li><a href="#" class="link-purple">Cara Pakai Tools</a></li>
+                        <li><a href="#" class="link-purple">How to Use</a></li>
                     </ul>
                 </div>
                 <!-- Legal -->
@@ -384,9 +435,9 @@
                         <li><a href="mailto:privacy@vinnesia.my.id" class="link-green">privacy@vinnesia.my.id</a></li>
                     </ul>
                 </div>
-                <!-- Media Sosial -->
+                <!-- Social Media -->
                 <div class="footer-section">
-                    <h4><i class="fas fa-share-alt"></i> Media Sosial</h4>
+                    <h4><i class="fas fa-share-alt"></i> Social Media</h4>
                     <div class="social-icons">
                         <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
@@ -399,85 +450,100 @@
         </div>
     </footer>
 
-    <!-- QR Scanner Library (Pihak Ketiga) -->
-    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js"></script>
+    <!-- QR Scanner Library (Third-party) - Deferred for performance -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js" defer></script>
 
-    <!-- JavaScript Kustom -->
+    <!-- Custom JavaScript -->
     <script>
-        // Impor QrScanner jika menggunakan modul ES6, atau gunakan QrScanner global dari CDN
-        // import QrScanner from 'qr-scanner';
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoElem = document.getElementById('qr-video');
+            const videoContainer = document.getElementById('video-container');
+            const uploadPrompt = document.getElementById('upload-prompt');
+            const fileInput = document.getElementById('file-input');
+            const scanResultElem = document.getElementById('scan-result');
+            const startScanBtn = document.getElementById('start-scan-btn');
+            const stopScanBtn = document.getElementById('stop-scan-btn');
 
-        const videoElem = document.getElementById('qr-video');
-        const videoContainer = document.getElementById('video-container');
-        const uploadPrompt = document.getElementById('upload-prompt');
-        const fileInput = document.getElementById('file-input');
-        const scanResultElem = document.getElementById('scan-result');
-        const startScanBtn = document.getElementById('start-scan-btn');
-        const stopScanBtn = document.getElementById('stop-scan-btn');
+            let qrScanner;
 
-        let qrScanner;
+            // Function to display the result
+            function setResult(result) {
+                console.log(result.data);
+                scanResultElem.textContent = result.data;
+                scanResultElem.style.color = 'var(--accent-green)';
+            }
 
-        // Fungsi untuk menampilkan hasil
-        function setResult(result) {
-            console.log(result.data);
-            scanResultElem.textContent = result.data;
-            scanResultElem.style.color = 'var(--accent-green)';
-        }
+            // Function to handle errors
+            function setError(error) {
+                console.error(error);
+                scanResultElem.textContent = error;
+                scanResultElem.style.color = '#e74c3c'; // Red color for errors
+            }
 
-        // Fungsi untuk menangani error
-        function setError(error) {
-            console.error(error);
-            scanResultElem.textContent = error;
-            scanResultElem.style.color = '#e74c3c'; // Warna merah untuk error
-        }
-
-        // Event listener untuk tombol Mulai Kamera
-        startScanBtn.addEventListener('click', () => {
-            videoContainer.style.display = 'block';
-            uploadPrompt.style.display = 'none';
-            startScanBtn.style.display = 'none';
-            stopScanBtn.style.display = 'inline-block';
-
-            qrScanner = new QrScanner(
-                videoElem,
-                result => setResult(result),
-                {
-                    onDecodeError: error => setError(error),
-                    highlightScanRegion: true,
-                    highlightCodeOutline: true,
+            // Event listener for the Start Camera button
+            startScanBtn.addEventListener('click', () => {
+                // Ensure QrScanner is loaded
+                if (typeof QrScanner === 'undefined') {
+                    setError('Scanner library is not loaded yet. Please wait a moment and try again.');
+                    return;
                 }
-            );
-            qrScanner.start();
+
+                videoContainer.style.display = 'block';
+                uploadPrompt.style.display = 'none';
+                startScanBtn.style.display = 'none';
+                stopScanBtn.style.display = 'inline-block';
+
+                qrScanner = new QrScanner(
+                    videoElem,
+                    result => setResult(result),
+                    {
+                        onDecodeError: error => {
+                            // We can choose to ignore 'No QR code found' errors to avoid spamming the console
+                            if (!error.includes('No QR code found')) {
+                                setError(error);
+                            }
+                        },
+                        highlightScanRegion: true,
+                        highlightCodeOutline: true,
+                    }
+                );
+                qrScanner.start().catch(err => setError(err || 'Could not start the camera.'));
+            });
+
+            // Event listener for the Stop Camera button
+            stopScanBtn.addEventListener('click', () => {
+                if (qrScanner) {
+                    qrScanner.stop();
+                    qrScanner.destroy();
+                    qrScanner = null;
+                }
+                videoContainer.style.display = 'none';
+                uploadPrompt.style.display = 'flex';
+                startScanBtn.style.display = 'inline-block';
+                stopScanBtn.style.display = 'none';
+            });
+
+            // Event listener for the file input
+            fileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (!file) {
+                    return;
+                }
+                
+                // Ensure QrScanner is loaded
+                if (typeof QrScanner === 'undefined') {
+                    setError('Scanner library is not loaded yet. Please wait a moment and try again.');
+                    return;
+                }
+
+                try {
+                    const result = await QrScanner.scanImage(file, { returnDetailedScanResult: true });
+                    setResult(result);
+                } catch (error) {
+                    setError(error || 'No QR code found in the image.');
+                }
+            });
         });
-
-        // Event listener untuk tombol Hentikan Kamera
-        stopScanBtn.addEventListener('click', () => {
-            if (qrScanner) {
-                qrScanner.stop();
-                qrScanner.destroy();
-                qrScanner = null;
-            }
-            videoContainer.style.display = 'none';
-            uploadPrompt.style.display = 'flex';
-            startScanBtn.style.display = 'inline-block';
-            stopScanBtn.style.display = 'none';
-        });
-
-        // Event listener untuk input file
-        fileInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) {
-                return;
-            }
-
-            try {
-                const result = await QrScanner.scanImage(file, { returnDetailedScanResult: true });
-                setResult(result);
-            } catch (error) {
-                setError(error || 'Tidak ada QR code yang ditemukan di gambar.');
-            }
-        });
-
     </script>
 
 </body>
