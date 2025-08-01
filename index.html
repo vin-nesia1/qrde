@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Reader - Pindai Kode QR Online</title>
+    <meta name="description" content="Pindai dan baca kode QR secara online dengan mudah dan cepat menggunakan QR Code Reader kami. Cukup unggah gambar QR atau gunakan kamera Anda.">
+    <meta name="keywords" content="qr code reader, pemindai qr, baca qr code, qr code online, qr scanner">
+    <meta name="author" content="VIN NESIA">
+    <link rel="canonical" href="https://qrdecode.vinnesia.my.id">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qrdecode.vinnesia.my.id">
+    <meta property="og:title" content="QR Code Reader - Pindai Kode QR Cepat & Mudah">
+    <meta property="og:description" content="Alat pemindai kode QR online gratis. Unggah gambar atau gunakan kamera untuk membaca konten QR secara instan.">
+    <meta property="og:image" content="https://qrdecode.vinnesia.my.id/social-preview.png"> <!-- Ganti dengan URL gambar preview Anda -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://qrdecode.vinnesia.my.id">
+    <meta property="twitter:title" content="QR Code Reader - Pindai Kode QR Cepat & Mudah">
+    <meta property="twitter:description" content="Alat pemindai kode QR online gratis. Unggah gambar atau gunakan kamera untuk membaca konten QR secara instan.">
+    <meta property="twitter:image" content="https://qrdecode.vinnesia.my.id/social-preview.png"> <!-- Ganti dengan URL gambar preview Anda -->
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3PYZXZFNER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3PYZXZFNER');
+    </script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS RESET AND BASIC STYLING */
+        :root {
+            --primary-bg: #1a1a2e; /* Ungu kehitaman */
+            --secondary-bg: #16213e;
+            --accent-purple: #9b59b6; /* Ungu */
+            --accent-green: #2ecc71;  /* Hijau */
+            --accent-yellow: #f1c40f; /* Kuning */
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #4a4a6a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* HEADER */
+        .site-header {
+            background-color: var(--secondary-bg);
+            padding: 1rem 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .site-title {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        /* HERO SECTION & QR READER */
+        .hero-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .qr-reader-wrapper {
+            background-color: var(--secondary-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .qr-reader-wrapper h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .qr-reader-wrapper p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .qr-reader-box {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 1.5rem auto;
+            background-color: #000;
+            border: 3px dashed var(--border-color);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #video-container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #qr-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #upload-prompt {
+            color: var(--text-muted);
+        }
+
+        #upload-prompt .fa-qrcode {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .upload-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .upload-button:hover {
+            background-color: #27ae60;
+        }
+
+        .controls button {
+            background-color: var(--accent-purple);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #8e44ad;
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .result-container h3 {
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #scan-result {
+            background-color: var(--primary-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            color: var(--accent-green);
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            min-height: 50px;
+        }
+
+        /* FOOTER */
+        .site-footer-main {
+            background-color: var(--secondary-bg);
+            color: var(--text-muted);
+            padding: 3rem 0 1.5rem 0;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 .fas, .footer-section h4 .fab {
+            margin-right: 10px;
+            color: var(--accent-purple);
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .link-purple { color: var(--accent-purple) !important; font-weight: bold; }
+        .link-purple:hover { color: #b37ac6 !important; }
+        
+        .link-green { color: var(--accent-green) !important; text-decoration: underline; }
+        .link-green:hover { color: #58d68d !important; }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            font-size: 1.8rem;
+            color: var(--accent-yellow);
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .site-title {
+                font-size: 1.5rem;
+            }
+            .logo {
+                height: 40px;
+            }
+            .qr-reader-wrapper {
+                padding: 1.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo">
+                <h1 class="site-title">QR CODE READER</h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="qr-reader-wrapper">
+                    <h2>Pindai Kode QR dari Gambar atau Kamera</h2>
+                    <p>Unggah file gambar kode QR atau gunakan kamera perangkat Anda untuk memindai secara langsung.</p>
+                    <div class="qr-reader-box">
+                        <div id="video-container" style="display: none;">
+                            <video id="qr-video" playsinline></video>
+                        </div>
+                        <div id="upload-prompt">
+                            <i class="fas fa-qrcode"></i>
+                            <p>Arahkan kamera ke kode QR atau</p>
+                            <label for="file-input" class="upload-button">
+                                <i class="fas fa-upload"></i> Pilih File Gambar
+                            </label>
+                            <input type="file" id="file-input" accept="image/*" hidden>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button id="start-scan-btn"><i class="fas fa-camera"></i> Mulai Kamera</button>
+                        <button id="stop-scan-btn" style="display: none;"><i class="fas fa-stop-circle"></i> Hentikan Kamera</button>
+                    </div>
+                    <div class="result-container">
+                        <h3>Hasil Pindai:</h3>
+                        <pre id="scan-result">Hasil akan ditampilkan di sini...</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer-main">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Navigasi -->
+                <div class="footer-section">
+                    <h4><i class="fas fa-compass"></i> Navigasi</h4>
+                    <ul>
+                        <li><a href="https://www.vinnesia.my.id" class="link-purple">Homepage</a></li>
+                    </ul>
+                </div>
+                <!-- Bantuan -->
+                <div class="footer-section">
+                    <h4><i class="fas fa-book"></i> Bantuan</h4>
+                    <ul>
+                        <li><a href="#" class="link-purple">Cara Pakai Tools</a></li>
+                    </ul>
+                </div>
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h4><i class="fas fa-balance-scale"></i> Legal</h4>
+                    <ul>
+                        <li><a href="#" class="link-purple">Privacy Policy</a></li>
+                        <li><a href="#" class="link-purple">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <!-- Email -->
+                <div class="footer-section">
+                    <h4><i class="fas fa-envelope"></i> Email</h4>
+                    <ul>
+                        <li><a href="mailto:admin@vinnesia.my.id" class="link-green">admin@vinnesia.my.id</a></li>
+                        <li><a href="mailto:support@vinnesia.my.id" class="link-green">support@vinnesia.my.id</a></li>
+                        <li><a href="mailto:privacy@vinnesia.my.id" class="link-green">privacy@vinnesia.my.id</a></li>
+                    </ul>
+                </div>
+                <!-- Media Sosial -->
+                <div class="footer-section">
+                    <h4><i class="fas fa-share-alt"></i> Media Sosial</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 VIN NESIA. All rights reserved. Built with ❤️ for everyone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- QR Scanner Library (Pihak Ketiga) -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/qr-scanner.umd.min.js"></script>
+
+    <!-- JavaScript Kustom -->
+    <script>
+        // Impor QrScanner jika menggunakan modul ES6, atau gunakan QrScanner global dari CDN
+        // import QrScanner from 'qr-scanner';
+
+        const videoElem = document.getElementById('qr-video');
+        const videoContainer = document.getElementById('video-container');
+        const uploadPrompt = document.getElementById('upload-prompt');
+        const fileInput = document.getElementById('file-input');
+        const scanResultElem = document.getElementById('scan-result');
+        const startScanBtn = document.getElementById('start-scan-btn');
+        const stopScanBtn = document.getElementById('stop-scan-btn');
+
+        let qrScanner;
+
+        // Fungsi untuk menampilkan hasil
+        function setResult(result) {
+            console.log(result.data);
+            scanResultElem.textContent = result.data;
+            scanResultElem.style.color = 'var(--accent-green)';
+        }
+
+        // Fungsi untuk menangani error
+        function setError(error) {
+            console.error(error);
+            scanResultElem.textContent = error;
+            scanResultElem.style.color = '#e74c3c'; // Warna merah untuk error
+        }
+
+        // Event listener untuk tombol Mulai Kamera
+        startScanBtn.addEventListener('click', () => {
+            videoContainer.style.display = 'block';
+            uploadPrompt.style.display = 'none';
+            startScanBtn.style.display = 'none';
+            stopScanBtn.style.display = 'inline-block';
+
+            qrScanner = new QrScanner(
+                videoElem,
+                result => setResult(result),
+                {
+                    onDecodeError: error => setError(error),
+                    highlightScanRegion: true,
+                    highlightCodeOutline: true,
+                }
+            );
+            qrScanner.start();
+        });
+
+        // Event listener untuk tombol Hentikan Kamera
+        stopScanBtn.addEventListener('click', () => {
+            if (qrScanner) {
+                qrScanner.stop();
+                qrScanner.destroy();
+                qrScanner = null;
+            }
+            videoContainer.style.display = 'none';
+            uploadPrompt.style.display = 'flex';
+            startScanBtn.style.display = 'inline-block';
+            stopScanBtn.style.display = 'none';
+        });
+
+        // Event listener untuk input file
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) {
+                return;
+            }
+
+            try {
+                const result = await QrScanner.scanImage(file, { returnDetailedScanResult: true });
+                setResult(result);
+            } catch (error) {
+                setError(error || 'Tidak ada QR code yang ditemukan di gambar.');
+            }
+        });
+
+    </script>
+
+</body>
+</html>
