@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use - QR Code Reader</title>
+    <meta name="description" content="A simple guide on how to use our online QR Code Reader tool with your camera or by uploading an image.">
+    <link rel="canonical" href="https://qrdecode.vinnesia.my.id/how-to-use.html">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Shared Styles -->
+    <style>
+        :root {
+            --primary-bg: #1a1a2e; --secondary-bg: #16213e; --accent-purple: #9b59b6;
+            --accent-green: #2ecc71; --accent-yellow: #f1c40f; --text-color: #e0e0e0;
+            --text-muted: #a0a0a0; --border-color: #4a4a6a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--primary-bg); color: var(--text-color); line-height: 1.7; display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex-grow: 1; }
+        .container { width: 90%; max-width: 900px; margin: 0 auto; padding: 0 15px; }
+        a { color: var(--accent-purple); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .site-header { background-color: var(--secondary-bg); padding: 1rem 0; border-bottom: 2px solid var(--border-color); }
+        .logo-container { display: flex; align-items: center; }
+        .logo { height: 50px; margin-right: 15px; }
+        .site-title { font-size: 1.8rem; color: var(--text-color); }
+        .content-section { padding: 3rem 0; }
+        .content-wrapper { background-color: var(--secondary-bg); padding: 2.5rem; border-radius: 15px; }
+        .content-wrapper h1 { font-size: 2.5rem; margin-bottom: 1.5rem; color: #fff; }
+        .content-wrapper h2 { font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--accent-purple); }
+        .content-wrapper p, .content-wrapper ol { margin-bottom: 1rem; }
+        .content-wrapper li { margin-bottom: 0.75rem; margin-left: 25px; }
+        .content-wrapper code { background-color: var(--primary-bg); padding: 2px 6px; border-radius: 4px; color: var(--accent-green); }
+        .site-footer-main { background-color: var(--secondary-bg); color: var(--text-muted); padding: 3rem 0 1.5rem 0; border-top: 2px solid var(--border-color); }
+        .footer-grid { display: grid; gap: 2.5rem; margin-bottom: 2.5rem; grid-template-columns: 1fr; text-align: center; }
+        .footer-section h4 { font-size: 1.1rem; color: var(--text-color); margin-bottom: 1rem; }
+        .footer-section h4 .fas { margin-right: 10px; color: var(--accent-purple); }
+        .footer-section ul { list-style: none; } .footer-section ul li { margin-bottom: 0.7rem; }
+        .link-purple { color: var(--accent-purple) !important; font-weight: bold; }
+        .link-green { color: var(--accent-green) !important; text-decoration: underline; }
+        .social-icons { display: flex; gap: 15px; justify-content: center; }
+        .social-icon { font-size: 1.8rem; color: var(--accent-yellow); }
+        .footer-bottom { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.9rem; }
+        @media (min-width: 576px) { .footer-grid { grid-template-columns: repeat(2, 1fr); text-align: left; } .social-icons { justify-content: flex-start; } }
+        @media (min-width: 992px) { .footer-grid { grid-template-columns: repeat(5, 1fr); align-items: start; } }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo.png" alt="Logo" class="logo">
+                <h1 class="site-title">QR CODE READER</h1>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <div class="container">
+                <div class="content-wrapper">
+                    <h1>How to Use QR Code Reader</h1>
+                    <p>Our tool is designed to be simple and intuitive. You have two easy ways to scan a QR code: by uploading an image or by using your device's camera.</p>
+
+                    <h2>Method 1: Scanning a QR Code from an Image</h2>
+                    <p>Use this method if you have a QR code saved as an image file (e.g., .png, .jpg) on your computer or phone.</p>
+                    <ol>
+                        <li>On the homepage, locate the scanner box.</li>
+                        <li>Click the <code><i class="fas fa-upload"></i> Choose Image File</code> button. This will open your device's file explorer.</li>
+                        <li>Navigate to and select the image file containing the QR code.</li>
+                        <li>The tool will automatically process the image. The decoded information (like a URL, text, or contact info) will instantly appear in the "Scan Result" box.</li>
+                    </ol>
+
+                    <h2>Method 2: Scanning a QR Code with Your Camera</h2>
+                    <p>Use this method to scan a physical QR code in real-time.</p>
+                    <ol>
+                        <li>On the homepage, click the <code><i class="fas fa-camera"></i> Start Camera</code> button.</li>
+                        <li>Your browser will ask for permission to access your camera. You must click "Allow" for the scanner to work. We do not record or store your camera feed.</li>
+                        <li>Once the camera is active, simply point it at the QR code you wish to scan. Make sure the QR code is well-lit and fully visible within the scanner's viewfinder.</li>
+                        <li>The tool will automatically detect and decode the QR code. The result will appear in the "Scan Result" box.</li>
+                        <li>When you are finished, click the <code><i class="fas fa-stop-circle"></i> Stop Camera</code> button to turn off the camera feed.</li>
+                    </ol>
+                    
+                    <h2>Troubleshooting Tips</h2>
+                    <ul>
+                        <li><strong>Scan Fails:</strong> Ensure the QR code is clear and not blurry. Good lighting is important. Try moving your camera closer or further away.</li>
+                        <li><strong>Camera Not Working:</strong> Make sure you have granted camera permissions to your browser for our site. Check if another application is already using your camera.</li>
+                        <li><strong>No QR Code Found in Image:</strong> The image might be too low-resolution, or the QR code might be obstructed or damaged.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer-main">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section"><h4><i class="fas fa-compass"></i> Navigation</h4><ul><li><a href="https://www.vinnesia.my.id" class="link-purple">Homepage</a></li></ul></div>
+                <div class="footer-section"><h4><i class="fas fa-book"></i> Help</h4><ul><li><a href="/how-to-use.html" class="link-purple">How to Use</a></li></ul></div>
+                <div class="footer-section"><h4><i class="fas fa-balance-scale"></i> Legal</h4><ul><li><a href="/privacy-policy.html" class="link-purple">Privacy Policy</a></li><li><a href="/terms-of-service.html" class="link-purple">Terms of Service</a></li></ul></div>
+                <div class="footer-section"><h4><i class="fas fa-envelope"></i> Email</h4><ul><li><a href="mailto:admin@vinnesia.my.id" class="link-green">admin@vinnesia.my.id</a></li><li><a href="mailto:support@vinnesia.my.id" class="link-green">support@vinnesia.my.id</a></li><li><a href="mailto:privacy@vinnesia.my.id" class="link-green">privacy@vinnesia.my.id</a></li></ul></div>
+                <div class="footer-section"><h4><i class="fas fa-share-alt"></i> Social Media</h4><div class="social-icons"><a href="#" class="social-icon"><i class="fab fa-instagram"></i></a><a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 VIN NESIA. All rights reserved. Built with ❤️ for everyone.</p></div>
+        </div>
+    </footer>
+</body>
+</html>
